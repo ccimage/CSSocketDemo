@@ -39,7 +39,7 @@ namespace csharpSocket
             }  
             //通过clientSocket接收数据  
             int receiveLength = clientSocket.Receive(result);  
-            Console.WriteLine("received from server, message：{0}",Encoding.ASCII.GetString(result,0,receiveLength));  
+            Console.WriteLine("received from server, message：{0}",Encoding.UTF8.GetString(result,0,receiveLength));  
             //通过 clientSocket 发送数据  
             for (int i = 0; i < 10; i++)  
             {  
@@ -47,7 +47,7 @@ namespace csharpSocket
                 {  
                     Thread.Sleep(1000);    //等待1秒钟  
                     string sendMessage = "test message datetime=" + DateTime.Now;  
-                    clientSocket.Send(Encoding.ASCII.GetBytes(sendMessage));  
+                    clientSocket.Send(Encoding.UTF8.GetBytes(sendMessage));  
                     Console.WriteLine("Send to server message：{0}" , sendMessage);  
                 }  
                 catch  

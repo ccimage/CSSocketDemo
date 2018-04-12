@@ -46,7 +46,7 @@ namespace csharpSocket
             {  
                 Console.WriteLine("Listen thread start.");
                 Socket clientSocket = serverSocket.Accept();  
-                clientSocket.Send(Encoding.ASCII.GetBytes("Server Say Hello"));  
+                clientSocket.Send(Encoding.UTF8.GetBytes("Server Say Hello"));  
                 Thread receiveThread = new Thread(ReceiveMessage);  
                 receiveThread.Start(clientSocket);  
             }  
@@ -69,7 +69,7 @@ namespace csharpSocket
                     if(receiveNumber<=0){
                         break;
                     }
-                    Console.WriteLine("received  from {0}, message {1}", myClientSocket.RemoteEndPoint.ToString(), Encoding.ASCII.GetString(result, 0, receiveNumber));  
+                    Console.WriteLine("received  from {0}, message {1}", myClientSocket.RemoteEndPoint.ToString(), Encoding.UTF8.GetString(result, 0, receiveNumber));  
                 }  
                 catch(Exception ex)  
                 {  
