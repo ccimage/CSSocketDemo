@@ -13,6 +13,10 @@ namespace csharpSocket
         static readonly int defaultPort = 8888;
         static void Main(string[] args)
         {
+            // foreach(string s in args){
+            //     Console.WriteLine(s);
+            // }
+
             if(args.Length <= 0){
                 ShowHelp();
                 return;
@@ -31,7 +35,7 @@ namespace csharpSocket
             }
             int portIndex = FindParamIndex(portKey,args);
             if(portIndex >= 0){
-                port = GetNumber(FindNextParam(ipIndex,args));
+                port = GetNumber(FindNextParam(portIndex,args));
             }
             
             if(FindParamIndex(serverKey,args)>=0){
@@ -49,8 +53,7 @@ namespace csharpSocket
             return;
         }
         static void ShowHelp(){
-            Console.WriteLine("Usage:  dotnet csharpSocket.dll OPTIONS [PARAMS]");
-            Console.WriteLine("Usage:  dotnet run \"OPTIONS [PARAMS]\" (in source directory,compile and run)");
+            Console.WriteLine("Usage:  dotnet CSSocketDemo.dll OPTIONS [PARAMS]");
             Console.WriteLine("OPTIONS:  \n\t-c|Client \t\tStart as client");
             Console.WriteLine("\t-s|Server \t\tStart as server");
             Console.WriteLine("\t-p|--port 1234 \t\tPort listen or connect to");
@@ -95,6 +98,7 @@ namespace csharpSocket
             return -1;
         }
         static string FindNextParam(int index,string[] args){
+            //Console.WriteLine("find next param of {0}",index);
             if(args.Length <= index+1){
                 return "";
             }
@@ -110,6 +114,7 @@ namespace csharpSocket
             }
             catch(Exception ex){
                 Console.WriteLine(ex.ToString());
+                Console.WriteLine("tried to convert {0}", s);
             }
             return 0;
         }
